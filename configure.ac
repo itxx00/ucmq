@@ -6,7 +6,7 @@ AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AC_CONFIG_SRCDIR([source/main.c])
 AC_CONFIG_HEADER([source/config.h])
 
-default_find_path=$HOME/local
+default_find_path=/usr
 
 AC_ARG_WITH([target], [AS_HELP_STRING([--with-target=TARGET],[build with server/client/all])],[],[withval="all"])
 case $withval in
@@ -39,7 +39,7 @@ if test -n "$server"; then
                 ev_include="ok"
             fi
         done
-        for dir in "." $withval/lib ; do 
+        for dir in "." "$withval/lib" "$withval/lib64" ; do
             if test -f "$dir/libevent_core.a" ; then 
                 EVENT_LIBS="$dir/libevent.a"
                 ev_core="ok"

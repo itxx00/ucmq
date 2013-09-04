@@ -1948,16 +1948,9 @@ AMTAR=${AMTAR-"${am_missing_run}tar"}
 
 am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
 
+ac_config_headers="$ac_config_headers source/config.h"
 
-
-
-
-
-          ac_config_headers="$ac_config_headers source/config.h"
-
-
-default_find_path=$HOME/local
-
+default_find_path=/usr
 
 # Check whether --with-target or --without-target was given.
 if test "${with_target+set}" = set; then
@@ -2060,7 +2053,7 @@ echo $ECHO_N "checking for libevent installation... $ECHO_C" >&6
                 ev_include="ok"
             fi
         done
-        for dir in "." $withval/lib ; do
+        for dir in "." "$withval/lib" "$withval/lib64" ; do
             if test -f "$dir/libevent_core.a" ; then
                 EVENT_LIBS="$dir/libevent.a"
                 ev_core="ok"
